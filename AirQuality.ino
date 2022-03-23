@@ -1,9 +1,11 @@
 /* 
- Grove - Dust Sensor Demo v1.0
- Interface to Shinyei Model PPD42NS Particle Sensor
- Program by Christopher Nafis 
- Written April 2012
- 
+Code written by Saffron Livaccari and Jiali Yao.
+Lab07
+March 12nd, 2022 
+
+This code uses the Adafruit GPS and Grove Dust Sensor together to collect PM data in the city.
+This code writes a file onto the SD card that contains the date, time in EST, latitude, longitude, and PM concentration.
+
  https://www.seeedstudio.com/Grove-Dust-Sensor-PPD42N-p-1050.html
   https://www.shinyei.co.jp/stc/eng/optical/main_ppd42.html
  
@@ -83,11 +85,11 @@ void loop()  {
       if ((millis()-starttime) > 30000)//if the sample time == 30s
         {
           mySensorData = SD.open(filename, FILE_WRITE); // this creates a new file on the SD card
-          if (GPS.hour >= 5) { 
+          if (GPS.hour >= 5) {  // if the hour is greater than 5 then just subract 5 hours to get the time into EST
             if ((GPS.hour-5) < 10) { mySensorData.print('0'); }// If the hour is only one digit in length (for example, 1 or 8) 
             mySensorData.print(GPS.hour-5, DEC);                // then make 0 the first digit instead
             mySensorData.print(':'); }
-          else { mySensorData.print(GPS.hour+19, DEC);
+          else { mySensorData.print(GPS.hour+19, DEC); // if the hour is less than 5, add 19 hours to get the time into EST
             mySensorData.print(':'); } //print the hour followed by :
           if (GPS.minute < 10) { mySensorData.print('0'); }// If the minute is only one digit in length then make 0 the first digit instead
           mySensorData.print(GPS.minute, DEC); mySensorData.print(':');//print the minute followed by :
