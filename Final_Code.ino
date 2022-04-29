@@ -13,8 +13,9 @@
 */
 #include <OneWire.h> // load the library for LCD display
 #include <DallasTemperature.h> // load the library for Temperature
-#include <ArducamSSD1306.h>    // Modification of Adafruit_SSD1306 for ESP8266 compatibility (from github package)
-#include <Adafruit_GFX.h>   // Needs a little change in original Adafruit library (See README.txt file)
+#include <ArducamSSD1306.h>    // Modification of Adafruit_SSD1306 for ESP8266 compatibility
+// from github package: https://github.com/supprot/ArducamSSD1306
+#include <Adafruit_GFX.h>
 #include <Wire.h>           // For I2C comm, but needed for not getting compile error
 
 // For OLED Screen:
